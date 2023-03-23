@@ -1,0 +1,20 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# esbuild directories
+.webpack
+
+# ide info 
+.vscode
+
+# secrets
+.env*
+
+# test outputs
+coverage
+
+.DS_STORE
