@@ -1,7 +1,7 @@
 {
-  "name": "ranke-reports-app",
+  "name": "thrift-target",
   "version": "1.0.0",
-  "description": "Rank Reports App",
+  "description": "Target application structure",
   "scripts": {
     "test": "yarn test:quick && yarn test:integration",
     "test:quick": "jest",
