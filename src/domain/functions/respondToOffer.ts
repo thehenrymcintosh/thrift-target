@@ -1,5 +1,6 @@
 import {Offer} from "@domain/entities/Offer";
 import {Item} from "@domain/entities/Item";
+import {ageInDays} from "@domain/functions/dateUtils";
 
 export enum OfferOutcome {
     Accept = "Accept",
@@ -15,12 +16,16 @@ type Params = {
   item: Item
 };
 
-const acceptableDiscounts = {
-    firstMonth: 0.1
-} as const;
-
 export const respondToOffer = ({offer, item}: Params): OfferResponse => {
-    if (offer.offerPriceInPence >= item.priceInPence) return { outcome: OfferOutcome.Accept };
-    const itemAgeInDays =
-    return { outcome: OfferOutcome.Accept }
+    const itemAgeInDays = ageInDays(item.firstListedAt);
+    const maxDiscount = maxDiscountForAge(itemAgeInDays);
+    const minAcceptablePrice = item.priceInPence * (1-maxDiscount);
+    if (offer.offerPriceInPence >= minAcceptablePrice) return { outcome: OfferOutcome.Accept }
+    return { outcome: OfferOutcome.Reject }
+}
+
+const maxDiscountForAge = (itemAgeInDays: number) => {
+    if (itemAgeInDays < 31) return 0.1;
+    if (itemAgeInDays < 91) return 0.3;
+    return 0.5;
 }

@@ -1,13 +1,14 @@
-import {Item} from "@domain/entities/Item";
+import {Item, ItemStatus} from "@domain/entities/Item";
 import {uuid} from "@domain/values/UUID";
-import {intInRange} from "tests/builders/utils/builderHelpers";
+import {intInRange, oneFrom} from "tests/builders/utils/builderHelpers";
 
 export class ItemBuilder {
     private item: Item = {
         id: uuid(),
         firstListedAt: new Date(),
         name: "Cool hat",
-        priceInPence: intInRange(500, 5_000),
+        priceInPence: intInRange(5_00, 50_00),
+        status: oneFrom(Object.values(ItemStatus))
     }
 
     withId(id: string) {

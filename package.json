@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Rank Reports App",
   "scripts": {
-    "test": "yarn test:quick",
+    "test": "yarn test:quick && yarn test:integration",
     "test:quick": "jest",
+    "test:integration": "jest --config ./jest.integration.config.js",
     "lint:fix": "eslint --fix",
     "prepare": "husky install"
   },

@@ -15,10 +15,11 @@
       "@application/*": ["src/application/*"],
       "@domain/*": ["src/domain/*"],
       "@infrastructure/*": ["src/infrastructure/*"],
+      "@fakes/*": ["fakes/*"],
       "tests/*": ["tests/*"]
     }
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "fakes/**/*.ts"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",

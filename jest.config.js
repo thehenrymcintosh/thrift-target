@@ -14,7 +14,7 @@ const config = {
       prefix: "<rootDir>/",
     }),
     "^@infrastructure/(.*)$": [
-      "<rootDir>/tests/mockInfrastructure/$1",
+      "<rootDir>/fakes/$1",
       "<rootDir>/src/infrastructure/$1",
     ],
   },

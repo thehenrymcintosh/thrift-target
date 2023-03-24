@@ -1,8 +1,7 @@
-import {UUID} from "@domain/values/UUID";
 import {CustomerId} from "@domain/entities/Customer";
 import {ItemId} from "@domain/entities/Item";
 
-export type OfferId = UUID;
+export type OfferReference = string;
 
 export enum OfferInitiator {
     Thrift = "Thrift",
@@ -17,7 +16,7 @@ export enum OfferStatus {
 }
 
 export type Offer = {
-    id: OfferId;
+    id: OfferReference;
     customerId: CustomerId;
     sentAt: Date;
     itemId: ItemId;

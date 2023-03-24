@@ -9,8 +9,8 @@ export class OfferBuilder {
         id: uuid(),
         sentAt: new Date(),
         offerPriceInPence: intInRange(2_000, 4_000),
-        customerId: "customer-uuid-goes-here",
-        itemId: "item-uuid-goes-here",
+        customerId: uuid(),
+        itemId: uuid(),
         initiatedBy: oneFrom([ OfferInitiator.Buyer, OfferInitiator.Thrift]),
         status: oneFrom([OfferStatus.Accepted, OfferStatus.Rejected, OfferStatus.Sent]),
     }
