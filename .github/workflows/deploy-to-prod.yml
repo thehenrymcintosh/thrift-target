@@ -19,59 +19,59 @@ jobs:
         run: yarn install
       - name: Test
         run: yarn test
-
-  deploy-to-dev:
-    needs: test
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: write
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Install
-        run: yarn install
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-region: eu-west-2
-          role-to-assume: arn:aws:iam::943506481507:role/github_actions_deployer
-          role-duration-seconds: 1800
-      - name: Get database URL
-        uses: "marvinpinto/action-inject-ssm-secrets@latest"
-        with:
-          ssm_parameter: "/whatsonwhere/dev/DATABASE_URL"
-          env_variable_name: "DATABASE_URL"
-      - name: Deploy
-        run: yarn deploy:dev
-
-  deploy-to-prod:
-    needs: deploy-to-dev
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: write
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Install
-        run: yarn install
-      - name: Configure AWS Credentials - Prod
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-region: eu-west-2
-          role-to-assume: arn:aws:iam::943506481507:role/github_actions_deployer
-          role-duration-seconds: 1800
-      - name: Get database URL
-        uses: "marvinpinto/action-inject-ssm-secrets@latest"
-        with:
-          ssm_parameter: "/whatsonwhere/prod/DATABASE_URL"
-          env_variable_name: "DATABASE_URL"
-      - name: Deploy
-        run: yarn deploy:prod
+#
+#  deploy-to-dev:
+#    needs: test
+#    runs-on: ubuntu-latest
+#    permissions:
+#      id-token: write
+#      contents: write
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: actions/cache@v2
+#        with:
+#          path: "**/node_modules"
+#          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+#      - name: Install
+#        run: yarn install
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-region: eu-west-2
+#          role-to-assume: arn:aws:iam::943506481507:role/github_actions_deployer
+#          role-duration-seconds: 1800
+#      - name: Get database URL
+#        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+#        with:
+#          ssm_parameter: "/whatsonwhere/dev/DATABASE_URL"
+#          env_variable_name: "DATABASE_URL"
+#      - name: Deploy
+#        run: yarn deploy:dev
+#
+#  deploy-to-prod:
+#    needs: deploy-to-dev
+#    runs-on: ubuntu-latest
+#    permissions:
+#      id-token: write
+#      contents: write
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: actions/cache@v2
+#        with:
+#          path: "**/node_modules"
+#          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+#      - name: Install
+#        run: yarn install
+#      - name: Configure AWS Credentials - Prod
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-region: eu-west-2
+#          role-to-assume: arn:aws:iam::943506481507:role/github_actions_deployer
+#          role-duration-seconds: 1800
+#      - name: Get database URL
+#        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+#        with:
+#          ssm_parameter: "/whatsonwhere/prod/DATABASE_URL"
+#          env_variable_name: "DATABASE_URL"
+#      - name: Deploy
+#        run: yarn deploy:prod
