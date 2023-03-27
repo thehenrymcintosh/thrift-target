@@ -7,14 +7,17 @@ const config = {
   // collectCoverage: true,
   // collectCoverageFrom: ["src/**/*.ts(x)?"],
   testEnvironment: "node",
-  testMatch: ["**/tests/**/?(*.)spec.ts?(x)"],
+  testMatch: ["**/tests/acceptance/**/?(*.)spec.ts?(x)"],
   setupFilesAfterEnv: ["jest-plugin-must-assert"],
+  maxWorkers: 1,
   moduleNameMapper: {
+    "@infrastructure/adaptors": [
+      "<rootDir>/tests/testDoubles/acceptanceTestAdaptors.ts",
+    ],
     ...pathsToModuleNameMapper(compilerOptions.paths, {
       prefix: "<rootDir>/",
-    })
+    }),
   },
-  testPathIgnorePatterns: ["integration", "acceptance"],
 };
 
 module.exports = config;

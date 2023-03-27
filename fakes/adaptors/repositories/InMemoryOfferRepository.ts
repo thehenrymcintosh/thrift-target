@@ -4,7 +4,7 @@ import {ItemId} from "@domain/entities/Item";
 
 export class InMemoryOfferRepository implements OfferRepository {
     protected repo: Offer[] = [];
-    async getByItemId(itemId: ItemId): Promise<Offer[]> {
+    async allOffersForItem(itemId: ItemId): Promise<Offer[]> {
         return this.repo.filter(offer => offer.itemId == itemId);
     }
 

@@ -3,6 +3,6 @@
 import {Offer} from "@domain/entities/Offer";
 import {ItemId} from "@domain/entities/Item";
 export interface OfferRepository {
-    getByItemId(itemId: ItemId): Promise<Offer[]>;
+    allOffersForItem(itemId: ItemId): Promise<Offer[]>;
     save(offer: Offer): Promise<void>;
 }

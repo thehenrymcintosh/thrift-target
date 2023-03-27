@@ -20,6 +20,6 @@ describe.each`
     it('Can retrieve saved offers by itemId', async () => {
         const offer = new OfferBuilder().build();
         await offerRepository.save(offer);
-        await expect(offerRepository.getByItemId(offer.itemId)).resolves.toEqual([offer]);
+        await expect(offerRepository.allOffersForItem(offer.itemId)).resolves.toEqual([offer]);
     })
 })

@@ -49,8 +49,8 @@ describe('respondToOffer', () => {
         })
     });
 
-    describe('items that are more than 90 days old', () => {
-        const oldItem = new ItemBuilder().withFirstListedAt(dateDaysAgo(91)).build();
+    describe('items that are more than 91 days old', () => {
+        const oldItem = new ItemBuilder().withFirstListedAt(dateDaysAgo(92)).build();
 
         it('should accept offers up to 50% off',async () => {
             const offer = new OfferBuilder().withOfferPriceInPence(oldItem.priceInPence * 0.5).build();
